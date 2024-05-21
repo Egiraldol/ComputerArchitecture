@@ -3,7 +3,6 @@ package src.components;
 /**
  * Class that represents a word (16 bits).
  * It provides opereations to get a bit, set a bit and extract bits from a word.
- * 
  */
 public class Word {
     short n;

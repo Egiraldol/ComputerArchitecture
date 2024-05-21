@@ -1,23 +1,36 @@
 package src.components;
 
+/**
+ * The Register class represents a Register.
+ */
 public class Register {
-    // Inputs
+    /*
+     * Inputs
+     */
     short in;
 
-    // Output
+    /*
+     * Output
+     */
     short out;
 
-    // Setter
+    /*
+     * Setters
+     */
     public void setIn(short in) {
         this.in = in;
     }
 
-    // Getter
+    /*
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the Register.
+    /*
+     * Computes the output of the Register.
+     */
     public void load(boolean load) {
         if (load) {
             out = in;

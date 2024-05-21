@@ -1,15 +1,24 @@
 package src.components;
 
-public class mux {
-    // Inputs
+/**
+ * The Mux class represents a MUX gate.
+ */
+public class Mux {
+    /*
+     * Inputs
+     */
     short a;
     short b;
     short sel;
 
-    // Output
+    /*
+     * Output
+     */
     short out;
 
-    // Setters
+    /*
+     * Setters
+     */
     public void setA(short a) {
         this.a = a;
     }
@@ -22,12 +31,16 @@ public class mux {
         this.sel = sel;
     }
 
-    // Getter
+    /*
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the MUX gate.
+    /*
+     * Computes the output of the MUX gate.
+     */
     public void compute() {
         out = (short) ((a & ~sel) | (b & sel));
     }

@@ -1,14 +1,23 @@
 package src.components;
 
-public class or {
-    // Inputs
+/**
+ * The Or class represents an OR gate.
+ */
+public class Or {
+    /*
+     * Inputs
+     */
     short a;
     short b;
 
-    // Output
+    /*
+     * Output
+     */
     short out;
 
-    // Setters
+    /*
+     * Setters
+     */
     public void setA(short a) {
         this.a = a;
     }
@@ -17,12 +26,16 @@ public class or {
         this.b = b;
     }
 
-    // Getter
+    /*
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the OR gate.
+    /*
+     * Computes the output of the OR gate.
+     */
     public void compute() {
         out = (short) (a | b);
     }

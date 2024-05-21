@@ -1,14 +1,23 @@
 package src.components;
 
-public class and {
-    // Inputs
+/**
+ * The And class represents an AND gate.
+ */
+public class And {
+    /**
+     * Inputs
+     */
     short a;
     short b;
 
-    // Output
+    /**
+     * Output
+     */
     short out;
 
-    // Setters
+    /**
+     * Setters
+     */
     public void setA(short a) {
         this.a = a;
     }
@@ -17,13 +26,16 @@ public class and {
         this.b = b;
     }
 
-    // Getter
+    /**
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the AND gate.
-
+    /**
+     * Computes the output of the AND gate.
+     */
     public void compute() {
         out = (short) (a & b);
     }

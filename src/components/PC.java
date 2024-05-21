@@ -1,16 +1,25 @@
 package src.components;
 
+/**
+ * The PC class represents the Program Counter of the computer.
+ */
 public class PC {
-    // Inputs
+    /*
+     * Inputs
+     */
     short in;
     short load;
     short inc;
     short reset;
 
-    // Output
+    /*
+     * Output
+     */
     short out;
 
-    // Setters
+    /*
+     * Setters
+     */
     public void setIn(short in) {
         this.in = in;
     }
@@ -27,12 +36,16 @@ public class PC {
         this.reset = reset;
     }
 
-    // Getter
+    /*
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the PC.
+    /*
+     * Computes the output of the Program Counter.
+     */
     public void compute() {
         if (reset == 1) {
             out = 0;

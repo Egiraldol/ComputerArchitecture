@@ -4,11 +4,15 @@ package src.components;
  * The ALU class represents an Arithmetic Logic Unit.
  */
 public class ALU {
-    // Inputs
+    /**
+     * Inputs
+     */
     short x;
     short y;
 
-    // Control bits
+    /**
+     * Control bits
+     */
     short zx;
     short nx;
     short zy;
@@ -16,15 +20,33 @@ public class ALU {
     short f;
     short no;
 
-    // Outputs
+    /**
+     * Output
+     */
     short out;
     short zr;
     short ng;
 
     /**
+     * Getters
+     */
+
+    public short getOut() {
+        return out;
+    }
+
+    public short getZr() {
+        return zr;
+    }
+
+    public short getNg() {
+        return ng;
+    }
+
+    /**
      * Computes the output of the ALU.
      */
-    public void compute() {
+    public void compute(short x, short y, short zx, short nx, short zy, short ny, short f, short no) {
         short x1 = (short) (zx == 1 ? 0 : x); // Zero the x input
         short x2 = (short) (nx == 1 ? ~x1 : x1); // Negate the x input
         short y1 = (short) (zy == 1 ? 0 : y); // Zero the y input

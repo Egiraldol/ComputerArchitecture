@@ -1,20 +1,29 @@
 package src.components;
 
-public class mux16 {
-    // Inputs
-    short[] a = new short[16];
-    short[] b = new short[16];
+/**
+ * The Mux16 class represents a 16-bit multiplexor.
+ */
+public class Mux16 {
+    /*
+     * Inputs
+     */
+    short a;
+    short b;
     short sel;
 
-    // Output
-    short[] out = new short[16];
+    /*
+     * Output
+     */
+    short out;
 
-    // Setters
-    public void setA(short[] a) {
+    /*
+     * Setters
+     */
+    public void setA(short a) {
         this.a = a;
     }
 
-    public void setB(short[] b) {
+    public void setB(short b) {
         this.b = b;
     }
 
@@ -22,15 +31,17 @@ public class mux16 {
         this.sel = sel;
     }
 
-    // Getter
-    public short[] getOut() {
+    /*
+     * Getter
+     */
+    public short getOut() {
         return out;
     }
 
-    // Computes the output of the MUX16 gate.
+    /*
+     * Computes the output of the 16-bit multiplexor.
+     */
     public void compute() {
-        for (int i = 0; i < 16; i++) {
-            out[i] = (short) ((a[i] & ~sel) | (b[i] & sel));
-        }
+        out = (short) ((a & ~sel) | (b & sel));
     }
 }

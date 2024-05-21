@@ -1,15 +1,24 @@
 package src.components;
 
-public class xor {
-    // Inputs
+/**
+ * The Xor class represents an XOR gate.
+ */
+public class Xor {
+    /*
+     * Inputs
+     */
 
     short a;
     short b;
 
-    // Output
+    /*
+     * Output
+     */
     short out;
 
-    // Setters
+    /*
+     * Setters
+     */
     public void setA(short a) {
         this.a = a;
     }
@@ -18,12 +27,16 @@ public class xor {
         this.b = b;
     }
 
-    // Getter
+    /*
+     * Getter
+     */
     public short getOut() {
         return out;
     }
 
-    // Computes the output of the XOR gate.
+    /*
+     * Computes the output of the XOR gate.
+     */
     public void compute() {
         out = (short) (a ^ b);
     }
