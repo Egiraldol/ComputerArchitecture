@@ -1,4 +1,3 @@
-package src.components;
 
 /**
  * Class that represents a word (16 bits).

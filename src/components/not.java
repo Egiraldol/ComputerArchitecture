@@ -1,9 +1,8 @@
-package src.components;
 
 /**
  * The Not class represents a NOT gate.
  */
-public class Not {
+public class not {
     /*
      * Input
      */

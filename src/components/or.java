@@ -1,9 +1,9 @@
-package src.components;
+
 
 /**
  * The Or class represents an OR gate.
  */
-public class Or {
+public class or {
     /*
      * Inputs
      */

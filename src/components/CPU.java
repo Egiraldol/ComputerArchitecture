@@ -1,26 +1,32 @@
-package src.components;
 
 /**
  * The CPU class represents the Central Processing Unit of the computer.
  */
 public class CPU {
 
-    private ALU alu;
-    private Register registerA;
-    private Register registerD;
-    private PC pc;
-    private Mux16 mux16;
+    /**
+     * Components
+     */
+    public ALU alu;
+    public Register registerA;
+    public Register registerD;
+    public PC pc;
+    public mux16 mux16;
 
-    // Inputs
-    private short inM;
-    private short instruction;
-    private boolean reset;
+    /**
+ * Inputs
+ */
+    short inM;
+    short instruction;
+    boolean reset;
 
-    // Outputs
-    private short outM;
-    private boolean writeM;
-    private short addressM;
-    private short pcOut;
+    /**
+ * Outputs
+ */
+    short outM;
+    boolean writeM;
+    short addressM;
+    short pcOut;
 
     // Internal control signals
     private boolean isCInstruction;
@@ -29,7 +35,9 @@ public class CPU {
     private boolean loadD;
     private short writeMInternal;
 
-    // ALU outputs
+    /**
+        * ALU outputs
+     */
     private short outALU;
     private boolean isZeroOut;
     private boolean isNegOut;
@@ -42,7 +50,7 @@ public class CPU {
         this.registerA = new Register();
         this.registerD = new Register();
         this.pc = new PC();
-        this.mux16 = new Mux16();
+        this.mux16 = new mux16();
     }
 
     /**
@@ -63,7 +71,10 @@ public class CPU {
     }
 
     private void decodeInstruction() {
-        // Decoding whether it's a C-instruction or A-instruction
+        /**
+         * Decoding whether it's a C-instruction or A-instruction
+         */
+
         isCInstruction = (Word.getBit(instruction, 15) == 1);
         isAInstruction = !isCInstruction;
     }
@@ -77,33 +88,53 @@ public class CPU {
             executeCInstruction();
         }
 
-        // Update the PC
+        /**
+         * Update the PC
+         */
         updatePC();
     }
 
     private void executeCInstruction() {
-        // Determine destination
+
+        /**
+         * Determine destination
+         */
         boolean destToA = (Word.getBit(instruction, 5) == 1);
         boolean destToD = (Word.getBit(instruction, 4) == 1);
         writeM = (Word.getBit(instruction, 3) == 1);
 
-        // Select A or M as the ALU input using Mux16
+        /**
+         * Select A or M as the ALU input using Mux16
+         */
+
         mux16.setA(registerA.getOut());
         mux16.setB(inM);
         mux16.setSel(Word.getBit(instruction, 12));
         mux16.compute();
         short y = mux16.getOut();
 
-        // Execute the ALU operation
-        alu.compute(registerD.getOut(), y, Word.getBit(instruction, 11), Word.getBit(instruction, 10),
-                Word.getBit(instruction, 9),
-                Word.getBit(instruction, 8), Word.getBit(instruction, 7), Word.getBit(instruction, 6));
+        /**
+         *Execute the ALU operation
+         */
+
+        alu.x = registerD.getOut();
+        alu.y = y;
+        alu.zx = Word.getBit(instruction, 11);
+        alu.nx = Word.getBit(instruction, 10);
+        alu.zy = Word.getBit(instruction, 9);
+        alu.ny = Word.getBit(instruction, 8);
+        alu.f = Word.getBit(instruction, 7);
+        alu.no = Word.getBit(instruction, 6);
+        alu.compute();
         outALU = alu.getOut();
         isZeroOut = (alu.getZr() == 1 ? true : false);
         isNegOut = (alu.getNg() == 1 ? true : false);
         ;
 
-        // Write to the registers based on the destination bits
+        /**
+         * Write to the registers based on the destination bits
+         */
+
         if (destToA) {
             registerA.setIn(outALU);
             loadA = true;
@@ -116,7 +147,6 @@ public class CPU {
             registerD.load(loadD);
         }
 
-        // Set outputs
         if (writeM) {
             outM = outALU;
             addressM = registerA.getOut();
@@ -129,7 +159,9 @@ public class CPU {
     private void updatePC() {
         boolean jumpToA = false;
 
-        // Determine jump conditions
+        /**
+         * Determine jump conditions
+         */
         boolean jgt = (isNegOut == false) && (isZeroOut == false) && (Word.getBit(instruction, 0) == 1);
         boolean jeq = (isZeroOut == true) && (Word.getBit(instruction, 1) == 1);
         boolean jlt = (isNegOut == true) && (Word.getBit(instruction, 2) == 1);
@@ -138,7 +170,10 @@ public class CPU {
             jumpToA = true;
         }
 
-        // Update the PC register
+        /**
+         * Update the PC register
+         */
+
         pc.setReset((short) (reset ? 1 : 0));
         pc.setLoad((short) (isCInstruction && jumpToA ? 1 : 0));
         pc.setIn(registerA.getOut());

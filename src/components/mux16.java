@@ -1,9 +1,7 @@
-package src.components;
-
 /**
  * The Mux16 class represents a 16-bit multiplexor.
  */
-public class Mux16 {
+public class mux16 {
     /*
      * Inputs
      */

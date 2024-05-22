@@ -1,9 +1,8 @@
-package src.components;
 
 /**
  * The Xor class represents an XOR gate.
  */
-public class Xor {
+public class xor {
     /*
      * Inputs
      */

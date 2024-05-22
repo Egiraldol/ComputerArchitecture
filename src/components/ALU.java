@@ -1,4 +1,3 @@
-package src.components;
 
 /**
  * The ALU class represents an Arithmetic Logic Unit.
@@ -46,7 +45,7 @@ public class ALU {
     /**
      * Computes the output of the ALU.
      */
-    public void compute(short x, short y, short zx, short nx, short zy, short ny, short f, short no) {
+    public void compute() {
         short x1 = (short) (zx == 1 ? 0 : x); // Zero the x input
         short x2 = (short) (nx == 1 ? ~x1 : x1); // Negate the x input
         short y1 = (short) (zy == 1 ? 0 : y); // Zero the y input

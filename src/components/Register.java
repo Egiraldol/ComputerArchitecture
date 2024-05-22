@@ -1,5 +1,3 @@
-package src.components;
-
 /**
  * The Register class represents a Register.
  */

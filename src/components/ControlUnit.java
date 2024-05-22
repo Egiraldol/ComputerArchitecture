@@ -1,21 +1,17 @@
-package src.components;
-
 /**
  * The ControlUnit class represents the control unit of the computer.
  */
 public class ControlUnit {
-    // Inputs
+    /**
+ * Inputs
+ */
     short in;
     short instruction;
-    short reset;
+    boolean reset;
 
-    // Outputs
-    short outM;
-    short writeM;
-    short addressM;
-    short pc;
-
-    // Setters
+    /**
+* Setters 
+*/
     public void setIn(short in) {
         this.in = in;
     }
@@ -24,25 +20,25 @@ public class ControlUnit {
         this.instruction = instruction;
     }
 
-    public void setReset(short reset) {
+    public void setReset(boolean reset) {
         this.reset = reset;
     }
 
-    // Getters
-    public short getOutM() {
-        return outM;
-    }
+    public static void main(String [] args) {
+        ControlUnit cu = new ControlUnit();
+        ROM rom = new ROM();
+        CPU cpu = new CPU();
+        RAM ram = new RAM();
 
-    public short getWriteM() {
-        return writeM;
-    }
+        for (short i = 0; i < 4; i++) {
+            short instruction = rom.get(cpu.pcOut);
+            cpu.execute(ram.getOut(), instruction, cu.reset);
 
-    public short getAddressM() {
-        return addressM;
-    }
-
-    public short getPc() {
-        return pc;
+            System.out.println("Instruction: " + Integer.toBinaryString(instruction & 0xFFFF));
+            System.out.println("Register A: " + cpu.registerA.getOut());
+            System.out.println("Register D: " + cpu.registerD.getOut());
+            System.out.println("PC: " + cpu.getPC());
+        }
     }
 
 }

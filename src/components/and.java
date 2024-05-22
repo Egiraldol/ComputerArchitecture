@@ -1,9 +1,7 @@
-package src.components;
-
 /**
  * The And class represents an AND gate.
  */
-public class And {
+public class and {
     /**
      * Inputs
      */

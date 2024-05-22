@@ -1,9 +1,8 @@
-package src.components;
 
 /**
  * The Mux class represents a MUX gate.
  */
-public class Mux {
+public class mux {
     /*
      * Inputs
      */
